@@ -4,28 +4,31 @@ services:
 
   fireflyiii:
     image: fireflyiii/core:latest
+    container_name: firefly
+    restart: unless-stopped
     volumes:
-      - /srv/FireFly3/firefly_iii_export:/var/www/firefly-iii/storage/export
-      - /srv/FireFly3/firefly_iii_upload:/var/www/firefly-iii/storage/upload
+      - /firefly_export:/var/www/firefly-iii/storage/export
+      - /firefly_upload:/var/www/firefly-iii/storage/upload
     env_file: .env
     ports:
       - "8200:8080"
     depends_on:
       - db
-    links:
-      - db:db
       
   db:
     image: yobasystems/alpine-mariadb:latest
+    container_name: firefly-db
+    restart: unless-stopped  
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_USER=firefly
       - MYSQL_PASSWORD=firefly_password
       - MYSQL_DATABASE=firefly
     volumes:
-      - db:/var/lib/mysql
+      - /firefly_db:/var/lib/mysql
 
 volumes:
-   firefly_iii_export:
-   firefly_iii_upload:
-   db:
+   firefly_export:
+   firefly_upload:
+   firefly_db:
+   
