@@ -3,7 +3,7 @@ version: '3.3'
 services:
 
   fireflyiii:
-    image: jc5x/firefly-iii:latest
+    image: fireflyiii/core:latest
     volumes:
       - /srv/FireFly3/firefly_iii_export:/var/www/firefly-iii/storage/export
       - /srv/FireFly3/firefly_iii_upload:/var/www/firefly-iii/storage/upload
