@@ -7,9 +7,7 @@ services:
     container_name: firefly
     restart: unless-stopped
     volumes:
-      - /firefly_export:/var/www/firefly-iii/storage/export
-      - /firefly_upload:/var/www/firefly-iii/storage/upload
-      - /firefly_upload_2:/var/www/html/storage/upload 
+      - /firefly_upload:/var/www/html/storage/upload 
     env_file: .env
     ports:
       - "8200:8080"
@@ -17,7 +15,7 @@ services:
       - db
       
   db:
-    image: yobasystems/alpine-mariadb:latest
+    image: mariadb:latest
     container_name: firefly-db
     restart: unless-stopped  
     environment:
@@ -29,8 +27,6 @@ services:
       - /firefly_db:/var/lib/mysql
 
 volumes:
-   firefly_export:
    firefly_upload:
-   firefly_upload_2:
    firefly_db:
    
