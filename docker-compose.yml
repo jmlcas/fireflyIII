@@ -15,7 +15,7 @@ services:
       - db
       
   db:
-    image: mariadb:latest
+    image: yobasystems/alpine-mariadb    
     container_name: firefly-db
     restart: unless-stopped  
     environment:
