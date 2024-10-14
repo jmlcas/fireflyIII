@@ -5,7 +5,7 @@ services:
     container_name: firefly
     restart: unless-stopped
     volumes:
-      - ./firefly_upload:/var/www/html/storage/upload 
+      - ./firefly_upload:/var/www/html/storage/upload
     env_file: .env
     ports:
       - "8200:8080"
@@ -13,9 +13,9 @@ services:
       - db
       
   db:
-    image: mariadb:latest                                # For arm: yobasystems/alpine-mariadb    
+    image: mariadb:latest   
     container_name: firefly-db
-    restart: unless-stopped 
+    restart: unless-stopped
     env_file: .db.env
 #    environment:
 #      - MYSQL_RANDOM_ROOT_PASSWORD=yes
