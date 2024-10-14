@@ -1,8 +1,6 @@
-version: '3.3'
-
 services:
 
-  fireflyiii:
+  firefly:
     image: fireflyiii/core:latest
     container_name: firefly
     restart: unless-stopped
@@ -15,14 +13,15 @@ services:
       - db
       
   db:
-    image: yobasystems/alpine-mariadb    
+    image: mariadb:latest                                # For arm: yobasystems/alpine-mariadb    
     container_name: firefly-db
-    restart: unless-stopped  
-    environment:
-      - MYSQL_RANDOM_ROOT_PASSWORD=yes
-      - MYSQL_USER=firefly
-      - MYSQL_PASSWORD=firefly_password
-      - MYSQL_DATABASE=firefly
+    restart: unless-stopped 
+    env_file: .db.env
+#    environment:
+#      - MYSQL_RANDOM_ROOT_PASSWORD=yes
+#      - MYSQL_USER=firefly
+#      - MYSQL_PASSWORD=firefly_password
+#      - MYSQL_DATABASE=firefly
     volumes:
       - ./firefly_db:/var/lib/mysql
 
